@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     
     private var counterValue: Int = 0
     private var counterLog: String = ""
-    private var newLogMessage: String = ""
 
     @IBOutlet weak var counter: UILabel!
     @IBOutlet weak var increaseBtn: UIButton!
@@ -55,11 +54,6 @@ class ViewController: UIViewController {
         changelog.textColor = UIColor.gray
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    
     func changeCounterColor() {
         if (counterValue > 0) {
             counter.textColor = UIColor.green
@@ -71,16 +65,18 @@ class ViewController: UIViewController {
     func addMessageWithDate(message: Message) {
         var date = Date()
         
-        newLogMessage = ""
-        newLogMessage = formatDate(date: date) + " " + message.rawValue
         counterLog += formatDate(date: date) + " " + message.rawValue
     }
     
     func formatDate(date: Date) -> String {
         var dateFormatter = DateFormatter();
-        dateFormatter.dateFormat = "dd.MM, HH:mm:ss: "
+        dateFormatter.dateFormat = "dd.MM HH:mm:ss"
         
         return dateFormatter.string(from: date)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
 }
 
